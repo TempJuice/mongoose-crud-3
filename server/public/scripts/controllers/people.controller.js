@@ -5,16 +5,18 @@ function (PersonService) {
     var self = this;
     self.newPerson = {};
     PersonService.getPeople();
-    self.gottenPeople = PersonService.gottenPeople;    
+    self.gottenPeople = PersonService.gottenPeople;
+    self.searchedPeople = PersonService.searchedPeople;    
 
     self.addPerson = function() {
         // have service send this to the server
         console.log('clicked to add new person');
+        self.newPerson.internetPts = 1000;
         PersonService.addPeople(self.newPerson);
     }
 
     self.updatePerson = function(currentPerson) {
-        currentPerson.location = "Oz";
+        currentPerson.internetPts += 100;
         PersonService.updatePerson(currentPerson);
     }
 
@@ -22,5 +24,8 @@ function (PersonService) {
         PersonService.deletePerson(personId);
     }
 
-
+    self.searchPeople = function(searchedName) {
+        PersonService.searchPeople(searchedName);
+    }
+    
 }]);

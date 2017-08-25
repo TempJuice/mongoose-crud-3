@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
             console.log('find error: ', err);
             res.sendStatus(500);
         } else {
-            console.log('found data: ', data);            
+            // console.log('found data: ', data);            
             res.send(data);
         }
     });
@@ -38,11 +38,13 @@ router.post('/', function(req, res) {
 
 router.put('/:id', function(req, res) {
     var personId = req.params.id;
+    
+    
 
     console.log('new location:', req.body.location);
     Person.findByIdAndUpdate(
         { _id: personId },
-        { $set: { location: req.body.location } },
+        { $set: { location: req.body.location, internetPts: req.body.internetPts } },
         function(err, data) {
             if (err) {
                 console.log('update error: ', err);

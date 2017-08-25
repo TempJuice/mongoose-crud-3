@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var index = require('./routes/index.js');
 var person = require('./routes/person.js');
+var search = require('./routes/search.js');
 
 var mongoose = require('mongoose');
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json()); // needed for angular requests
 /** ---------- EXPRESS ROUTES ---------- **/
 app.use('/', index);
 app.use('/person', person);
+app.use('/search', search);
 
 
 /** MONGOOSE CONNECTION **/

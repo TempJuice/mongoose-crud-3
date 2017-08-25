@@ -3,12 +3,13 @@ myApp.service('PersonService', ['$http', function($http) {
 
     var self = this;
     self.gottenPeople = { list: [] };
+    self.searchedPeople = { list: [] };
 
     self.getPeople = function() {
         $http.get('/person').then(function(response) {
             self.gottenPeople.list = response.data;
 
-            console.log('get response: ', self.gottenPeople);
+            // console.log('get response: ', self.gottenPeople);
         });
     };
 
@@ -39,5 +40,13 @@ myApp.service('PersonService', ['$http', function($http) {
         
     }
 
+    self.searchPeople = function (searchedName) {
+        $http.get('/search/' + searchedName).then(function (response) {
+            console.log(response.data);
+            
+            self.searchedPeople.list = response.data;
+        console.log('get search: ', self.searchedPeople.list);
+    });
+};//end searchPerson()
     
-}]);
+}]);//end of myApp service
